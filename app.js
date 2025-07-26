@@ -68,10 +68,6 @@ const sessionOptions = {
     }
 };
 
-//main route
-// app.get("/", (req, res) => {
-//     res.send("App is listening")
-// });
 
 app.use(session(sessionOptions));
 app.use(flash());
@@ -119,6 +115,11 @@ app.use((req, res, next) => {
 app.use("/listings", listingsRouter); 
 app.use("/listings/:id/reviews", reviewsRouter);
 app.use("/", userRouter);
+
+// main route
+app.get("/", (req, res) => {
+    res.redirect("/listings");
+});
 
 
 app.all("*", (req, res, next) => {
